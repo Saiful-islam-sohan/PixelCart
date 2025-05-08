@@ -14,11 +14,11 @@
                     <ul class="dropdown-menu" aria-labelledby="accountDropdown">
                         <li class="dropdown-item d-flex align-items-center">
                             <img src="https://i.pravatar.cc/40?u={{ Auth::id() }}" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
-                            <span>{{ Auth::user()->name }}</span>
+                            <span>{{ Auth::user()->name ??""}}</span>
                         </li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href=""
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <li><a class="dropdown-item" href="{{ route('admin.logout') }}"
+                              >
                                Logout
                             </a>
                         </li>

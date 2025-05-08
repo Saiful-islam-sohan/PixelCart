@@ -24,12 +24,22 @@
                         @endforeach
                     </td>
                     <td>
-                        <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        @if (auth()->user()->can('edit role'))
+                            
+                            <a href="{{ route('admin.roles.edit', $role->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            
+                        @endif
+                        @if (auth()->user()->can('delete role'))
+                            
                         <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button onclick="return confirm('Are you sure?')" class="btn btn-sm btn-danger">Delete</button>
                         </form>
+                            
+                        @endif
+                       
+                       
                     </td>
                 </tr>
             @endforeach

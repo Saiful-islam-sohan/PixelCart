@@ -8,10 +8,13 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
+
+
     public function index()
     {
         $permissions = Permission::all();

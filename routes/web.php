@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminLoginController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\UserController;
@@ -11,8 +12,9 @@ Route::get('/', function () {
 });
 
 
-
-
+Route::get('/login', function () {
+    return redirect()->route('admin.login');
+})->name('login');
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -34,6 +36,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
             Route::put('/update/{id}', [UserController::class, 'update'])->name('update');
             Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('delete');
+        });
+
+        Route::prefix('category')->name('category.')->group(function () {
+            Route::get('/index', [CategoryController::class, 'index'])->name('index');
+            Route::get('/create', [CategoryController::class, 'create'])->name('create');
+            Route::post('/store', [CategoryController::class, 'store'])->name('store');
+            Route::get('/edit/{id}', [CategoryController::class, 'edit'])->name('edit');
+            Route::put('/update/{id}', [CategoryController::class, 'update'])->name('update');
+            Route::get('/delete/{id}', [CategoryController::class, 'destroy'])->name('delete');
         });
     });
 });

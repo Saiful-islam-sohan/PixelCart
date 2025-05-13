@@ -46,13 +46,13 @@ class CategoryController extends Controller
         if (!$category) {
             return redirect()->route('admin.category.index')->with('error', 'Category not found.');
         }
- 
+
         return view('admin.category.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
     {
-         $category = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $validated = $request->validate([
             'name'        => 'required|string|max:255',
             'image'       => 'nullable|image|max:2048',
@@ -60,9 +60,9 @@ class CategoryController extends Controller
             'status'      => 'boolean',
         ]);
 
- 
-            $validated['slug'] = Str::slug($request['name']);
-        
+
+        $validated['slug'] = Str::slug($request['name']);
+
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('categories', 'public');
